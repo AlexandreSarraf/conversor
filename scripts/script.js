@@ -1,6 +1,10 @@
 function convertTemperature() {
     const inputValue = parseFloat(document.getElementById('inputValue').value);
+    
+    //Recebe o valor de entrada
     const inputUnit = document.getElementById('inputUnit').value;
+
+    //Recebe o valor de saída
     const outputUnit = document.getElementById('outputUnit').value;
 
     let celsiusValue;
@@ -25,5 +29,6 @@ function convertTemperature() {
         outputValue = celsiusValue + 273.15;
     }
 
+    //Formata e apresenta o resultado
     document.getElementById('outputValue').innerText = `Resultado: ${outputValue.toFixed(2)} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
 }
