@@ -19,11 +19,7 @@ body {
 .logo {
     width: 100%;
     height: auto; /* Ajusta a altura automaticamente para manter a proporção */
-    margin-bottom: 20px; /* Espaço entre a imagem e o título */
-}
-
-h1 {
-    margin-bottom: 20px;
+    margin-bottom: 5px; /* Espaço entre a imagem e o título */
 }
 
 .converter {
