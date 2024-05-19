@@ -14,6 +14,17 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.612);
     text-align: center;
+    width: 300px; /* Define a largura fixa da div */
+    box-sizing: border-box;
+}
+
+body.dark-mode {
+    background-color: #121212; /* Cor de fundo para o modo noturno */
+}
+
+body.dark-mode .container {
+    background-color: #333; /* Cor de fundo da container no modo noturno */
+    color: #fff; /* Cor do texto no modo noturno */
 }
 
 .logo {
@@ -35,6 +46,14 @@ input, select, button {
     border-radius: 4px;
 }
 
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode button {
+    background-color: #444; /* Cor de fundo dos elementos no modo noturno */
+    color: #fff; /* Cor do texto dos elementos no modo noturno */
+    border: 1px solid #555; /* Cor da borda dos elementos no modo noturno */
+}
+
 button {
     background-color: #1079e8cf;
     color: white;
@@ -46,8 +65,14 @@ button:hover {
     background-color: #162331;
 }
 
+#toggleMode {
+    margin-bottom: 20px; /* Espaço entre o botão e a imagem */
+    background-color: #555; /* Cor de fundo do botão de modo noturno */
+    color: #fff; /* Cor do texto do botão de modo noturno */
+}
+
 #outputValue {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }

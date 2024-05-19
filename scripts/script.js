@@ -32,3 +32,7 @@ function convertTemperature() {
     //Formata e apresenta o resultado
     document.getElementById('outputValue').innerText = `Resultado: ${outputValue.toFixed(2)} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
 }
+
+function toggleMode() {
+    document.body.classList.toggle('dark-mode');
+}
