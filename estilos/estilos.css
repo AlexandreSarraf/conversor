@@ -4,15 +4,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0d8;
     margin: 0;
 }
 
 .container {
-    background-color: floralwhite;
+    background-color: rgba(255, 250, 240, 0.769);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.612);
     text-align: center;
 }
 
@@ -36,14 +36,14 @@ input, select, button {
 }
 
 button {
-    background-color: #007bff;
+    background-color: #1079e8cf;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #162331;
 }
 
 #outputValue {
