@@ -71,8 +71,19 @@ button:hover {
     color: #fff;
 }
 
+button:hover {
+    background-color: #444;
+}
+
 #outputValue {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 20px; /* Aumenta o tamanho da fonte do resultado */
     font-weight: bold;
+}
+
+.error-message {
+    color: red; /* Cor das mensagens de erro */
+    font-size: 14px; /* Tamanho da fonte das mensagens de erro */
+    margin-top: -10px; /* Ajuste de margem para alinhar melhor */
+    margin-bottom: 10px; /* Espaço entre a mensagem de erro e os próximos elementos */
 }

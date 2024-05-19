@@ -1,21 +1,31 @@
 function convertTemperature() {
-    const inputValue = parseFloat(document.getElementById('inputValue').value);
-    
-    //Recebe o valor de entrada
-    const inputUnit = document.getElementById('inputUnit').value;
+    const inputValue = document.getElementById('inputValue').value;
+    const errorMessage = document.getElementById('errorMessage');
+    const outputValueElement = document.getElementById('outputValue');
 
-    //Recebe o valor de saída
+    // Limpa as mensagens de erro anteriores
+    errorMessage.innerText = '';
+    outputValueElement.innerText = '';
+
+    // Validação de entrada
+    if (isNaN(inputValue) || inputValue.trim() === '') {
+        errorMessage.innerText = 'Por favor, insira um número válido.';
+        return;
+    }
+
+    const value = parseFloat(inputValue);
+    const inputUnit = document.getElementById('inputUnit').value;
     const outputUnit = document.getElementById('outputUnit').value;
 
     let celsiusValue;
 
     // Convertendo para Celsius
     if (inputUnit === 'celsius') {
-        celsiusValue = inputValue;
+        celsiusValue = value;
     } else if (inputUnit === 'fahrenheit') {
-        celsiusValue = (inputValue - 32) * 5 / 9;
+        celsiusValue = (value - 32) * 5 / 9;
     } else if (inputUnit === 'kelvin') {
-        celsiusValue = inputValue - 273.15;
+        celsiusValue = value - 273.15;
     }
 
     let outputValue;
@@ -29,8 +39,7 @@ function convertTemperature() {
         outputValue = celsiusValue + 273.15;
     }
 
-    //Formata e apresenta o resultado
-    document.getElementById('outputValue').innerText = `Resultado: ${outputValue.toFixed(2)} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
+    outputValueElement.innerText = `Resultado: ${outputValue.toFixed(2)} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
 }
 
 function toggleMode() {
@@ -47,7 +56,7 @@ function toggleMode() {
     }
 }
 
-/* Carrega a preferência de modo noturno do usuário, verifica, salva e aplica o tema ao carregar a página.*/
+// Carrega a preferência de modo noturno do usuário
 function loadTheme() {
     const theme = localStorage.getItem('theme');
     const body = document.body;
