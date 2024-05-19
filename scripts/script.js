@@ -34,5 +34,13 @@ function convertTemperature() {
 }
 
 function toggleMode() {
-    document.body.classList.toggle('dark-mode');
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+
+    const logo = document.getElementById('logo');
+    if (body.classList.contains('dark-mode')) {
+        logo.src = 'imagens/logodark.jpg';
+    } else {
+        logo.src = 'imagens/logo.jpg';
+    }
 }
