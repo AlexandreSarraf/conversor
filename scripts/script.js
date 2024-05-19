@@ -40,7 +40,26 @@ function toggleMode() {
     const logo = document.getElementById('logo');
     if (body.classList.contains('dark-mode')) {
         logo.src = 'imagens/logodark.jpg';
+        localStorage.setItem('theme', 'dark');
     } else {
+        logo.src = 'imagens/logo.jpg';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+/* Carrega a preferência de modo noturno do usuário, verifica, salva e aplica o tema ao carregar a página.*/
+function loadTheme() {
+    const theme = localStorage.getItem('theme');
+    const body = document.body;
+    const logo = document.getElementById('logo');
+    if (theme === 'dark') {
+        body.classList.add('dark-mode');
+        logo.src = 'imagens/logodark.jpg';
+    } else {
+        body.classList.remove('dark-mode');
         logo.src = 'imagens/logo.jpg';
     }
 }
+
+// Chama a função para carregar o tema ao carregar a página
+window.onload = loadTheme;
