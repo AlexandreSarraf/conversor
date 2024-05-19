@@ -70,5 +70,12 @@ function loadTheme() {
     }
 }
 
+// Adiciona um ouvinte de eventos para detectar a tecla Enter
+document.getElementById('inputValue').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        convertTemperature();
+    }
+});
+
 // Chama a função para carregar o tema ao carregar a página
 window.onload = loadTheme;
