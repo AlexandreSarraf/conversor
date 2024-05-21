@@ -1,25 +1,64 @@
-function convertTemperature() {
+const units = {
+    temperature: ['celsius', 'fahrenheit', 'kelvin'],
+    length: ['meters', 'kilometers', 'miles'],
+    weight: ['kilograms', 'grams', 'pounds']
+};
+
+function updateUnits() {
+    const conversionType = document.getElementById('conversionType').value;
+    const inputUnit = document.getElementById('inputUnit');
+    const outputUnit = document.getElementById('outputUnit');
+
+    inputUnit.innerHTML = '';
+    outputUnit.innerHTML = '';
+
+    units[conversionType].forEach(unit => {
+        const option1 = document.createElement('option');
+        option1.value = unit;
+        option1.text = unit.charAt(0).toUpperCase() + unit.slice(1);
+        inputUnit.add(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = unit;
+        option2.text = unit.charAt(0).toUpperCase() + unit.slice(1);
+        outputUnit.add(option2);
+    });
+}
+
+function convert() {
     const inputValue = document.getElementById('inputValue').value;
     const errorMessage = document.getElementById('errorMessage');
     const outputValueElement = document.getElementById('outputValue');
 
-    // Limpa as mensagens de erro anteriores
     errorMessage.innerText = '';
     outputValueElement.innerText = '';
 
-    // Validação de entrada
     if (isNaN(inputValue) || inputValue.trim() === '') {
         errorMessage.innerText = 'Por favor, insira um número válido.';
         return;
     }
 
     const value = parseFloat(inputValue);
+    const conversionType = document.getElementById('conversionType').value;
     const inputUnit = document.getElementById('inputUnit').value;
     const outputUnit = document.getElementById('outputUnit').value;
 
+    let result;
+
+    if (conversionType === 'temperature') {
+        result = convertTemperature(value, inputUnit, outputUnit);
+    } else if (conversionType === 'length') {
+        result = convertLength(value, inputUnit, outputUnit);
+    } else if (conversionType === 'weight') {
+        result = convertWeight(value, inputUnit, outputUnit);
+    }
+
+    outputValueElement.innerText = `Resultado: ${result} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
+}
+
+function convertTemperature(value, inputUnit, outputUnit) {
     let celsiusValue;
 
-    // Convertendo para Celsius
     if (inputUnit === 'celsius') {
         celsiusValue = value;
     } else if (inputUnit === 'fahrenheit') {
@@ -28,18 +67,53 @@ function convertTemperature() {
         celsiusValue = value - 273.15;
     }
 
-    let outputValue;
-
-    // Convertendo de Celsius para a unidade desejada
     if (outputUnit === 'celsius') {
-        outputValue = celsiusValue;
+        return celsiusValue.toFixed(2);
     } else if (outputUnit === 'fahrenheit') {
-        outputValue = (celsiusValue * 9 / 5) + 32;
+        return ((celsiusValue * 9 / 5) + 32).toFixed(2);
     } else if (outputUnit === 'kelvin') {
-        outputValue = celsiusValue + 273.15;
+        return (celsiusValue + 273.15).toFixed(2);
+    }
+}
+
+function convertLength(value, inputUnit, outputUnit) {
+    let metersValue;
+
+    if (inputUnit === 'meters') {
+        metersValue = value;
+    } else if (inputUnit === 'kilometers') {
+        metersValue = value * 1000;
+    } else if (inputUnit === 'miles') {
+        metersValue = value * 1609.34;
     }
 
-    outputValueElement.innerText = `Resultado: ${outputValue.toFixed(2)} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
+    if (outputUnit === 'meters') {
+        return metersValue.toFixed(2);
+    } else if (outputUnit === 'kilometers') {
+        return (metersValue / 1000).toFixed(2);
+    } else if (outputUnit === 'miles') {
+        return (metersValue / 1609.34).toFixed(2);
+    }
+}
+
+function convertWeight(value, inputUnit, outputUnit) {
+    let kilogramsValue;
+
+    if (inputUnit === 'kilograms') {
+        kilogramsValue = value;
+    } else if (inputUnit === 'grams') {
+        kilogramsValue = value / 1000;
+    } else if (inputUnit === 'pounds') {
+        kilogramsValue = value / 2.20462;
+    }
+
+    if (outputUnit === 'kilograms') {
+        return kilogramsValue.toFixed(2);
+    } else if (outputUnit === 'grams') {
+        return (kilogramsValue * 1000).toFixed(2);
+    } else if (outputUnit === 'pounds') {
+        return (kilogramsValue * 2.20462).toFixed(2);
+    }
 }
 
 function toggleMode() {
@@ -56,7 +130,6 @@ function toggleMode() {
     }
 }
 
-// Carrega a preferência de modo noturno do usuário
 function loadTheme() {
     const theme = localStorage.getItem('theme');
     const body = document.body;
@@ -70,12 +143,13 @@ function loadTheme() {
     }
 }
 
-// Adiciona um ouvinte de eventos para detectar a tecla Enter
 document.getElementById('inputValue').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
-        convertTemperature();
+        convert();
     }
 });
 
-// Chama a função para carregar o tema ao carregar a página
-window.onload = loadTheme;
+window.onload = () => {
+    loadTheme();
+    updateUnits(); // Initialize units on page load
+};

@@ -3,30 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Temperatura</title>
-    <link rel="stylesheet" href="./estilos/estilos.css">
+    <title>Conversor de Medidas</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
 </head>
 <body>
     <div class="container">
         <button id="toggleMode" onclick="toggleMode()">Modo Noturno</button>
         <img src="imagens/logo.jpg" alt="Logo" class="logo" id="logo">
         <div class="converter">
-            <input type="number" id="inputValue" placeholder="Digite o valor da temperatura">
+            <select id="conversionType" onchange="updateUnits()">
+                <option value="temperature">Temperatura</option>
+                <option value="length">Comprimento</option>
+                <option value="weight">Peso</option>
+            </select>
+            <input type="text" id="inputValue" placeholder="Digite o valor">
             <p id="errorMessage" class="error-message"></p>
-            <select id="inputUnit">
-                <option value="celsius">Celsius</option>
-                <option value="fahrenheit">Fahrenheit</option>
-                <option value="kelvin">Kelvin</option>
-            </select>
-            <button onclick="convertTemperature()">Converter</button>
-            <select id="outputUnit">
-                <option value="celsius">Celsius</option>
-                <option value="fahrenheit">Fahrenheit</option>
-                <option value="kelvin">Kelvin</option>
-            </select>
+            <select id="inputUnit"></select>
+            <button onclick="convert()">Converter</button>
+            <select id="outputUnit"></select>
             <p id="outputValue"></p>
         </div>
     </div>
-    <script src="./scripts/script.js"></script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
