@@ -1,7 +1,7 @@
 const units = {
     temperature: ['celsius', 'fahrenheit', 'kelvin'],
-    length: ['metros', 'quilômetros', 'milhas'],
-    weight: ['quilogramas', 'gramas', 'libras']
+    length: ['quilômetro', 'metro', 'centímetro', 'milímetro'],
+    weight: ['tonelada', 'quilograma', 'grama', 'miligrama']
 };
 
 function updateUnits() {
@@ -79,40 +79,68 @@ function convertTemperature(value, inputUnit, outputUnit) {
 function convertLength(value, inputUnit, outputUnit) {
     let metersValue;
 
-    if (inputUnit === 'metros') {
-        metersValue = value;
-    } else if (inputUnit === 'quilômetros') {
-        metersValue = value * 1000;
-    } else if (inputUnit === 'milhas') {
-        metersValue = value * 1609.34;
+    switch (inputUnit) {
+        case 'quilômetro':
+            metersValue = value * 1000;
+            break;
+        case 'metro':
+            metersValue = value;
+            break;
+        case 'centímetro':
+            metersValue = value / 100;
+            break;
+        case 'milímetro':
+            metersValue = value / 1000;
+            break;
+        default:
+            metersValue = value;
     }
 
-    if (outputUnit === 'metros') {
-        return metersValue.toFixed(2);
-    } else if (outputUnit === 'quilômetros') {
-        return (metersValue / 1000).toFixed(2);
-    } else if (outputUnit === 'milhas') {
-        return (metersValue / 1609.34).toFixed(2);
+    switch (outputUnit) {
+        case 'quilômetro':
+            return (metersValue / 1000).toFixed(2);
+        case 'metro':
+            return metersValue.toFixed(2);
+        case 'centímetro':
+            return (metersValue * 100).toFixed(2);
+        case 'milímetro':
+            return (metersValue * 1000).toFixed(2);
+        default:
+            return metersValue.toFixed(2);
     }
 }
 
 function convertWeight(value, inputUnit, outputUnit) {
     let kilogramsValue;
 
-    if (inputUnit === 'quilogramas') {
-        kilogramsValue = value;
-    } else if (inputUnit === 'gramas') {
-        kilogramsValue = value / 1000;
-    } else if (inputUnit === 'libras') {
-        kilogramsValue = value / 2.20462;
+    switch (inputUnit) {
+        case 'tonelada':
+            kilogramsValue = value * 1000;
+            break;
+        case 'quilograma':
+            kilogramsValue = value;
+            break;
+        case 'grama':
+            kilogramsValue = value / 1000;
+            break;
+        case 'miligrama':
+            kilogramsValue = value / 1e6;
+            break;
+        default:
+            kilogramsValue = value;
     }
 
-    if (outputUnit === 'quilogramas') {
-        return kilogramsValue.toFixed(2);
-    } else if (outputUnit === 'gramas') {
-        return (kilogramsValue * 1000).toFixed(2);
-    } else if (outputUnit === 'libras') {
-        return (kilogramsValue * 2.20462).toFixed(2);
+    switch (outputUnit) {
+        case 'tonelada':
+            return (kilogramsValue / 1000).toFixed(2);
+        case 'quilograma':
+            return kilogramsValue.toFixed(2);
+        case 'grama':
+            return (kilogramsValue * 1000).toFixed(2);
+        case 'miligrama':
+            return (kilogramsValue * 1e6).toFixed(2);
+        default:
+            return kilogramsValue.toFixed(2);
     }
 }
 
