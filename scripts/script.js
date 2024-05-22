@@ -1,7 +1,7 @@
 const units = {
     temperature: ['celsius', 'fahrenheit', 'kelvin'],
-    length: ['meters', 'kilometers', 'miles'],
-    weight: ['kilograms', 'grams', 'pounds']
+    length: ['metros', 'quilômetros', 'milhas'],
+    weight: ['quilogramas', 'gramas', 'libras']
 };
 
 function updateUnits() {
@@ -79,19 +79,19 @@ function convertTemperature(value, inputUnit, outputUnit) {
 function convertLength(value, inputUnit, outputUnit) {
     let metersValue;
 
-    if (inputUnit === 'meters') {
+    if (inputUnit === 'metros') {
         metersValue = value;
-    } else if (inputUnit === 'kilometers') {
+    } else if (inputUnit === 'quilômetros') {
         metersValue = value * 1000;
-    } else if (inputUnit === 'miles') {
+    } else if (inputUnit === 'milhas') {
         metersValue = value * 1609.34;
     }
 
-    if (outputUnit === 'meters') {
+    if (outputUnit === 'metros') {
         return metersValue.toFixed(2);
-    } else if (outputUnit === 'kilometers') {
+    } else if (outputUnit === 'quilômetros') {
         return (metersValue / 1000).toFixed(2);
-    } else if (outputUnit === 'miles') {
+    } else if (outputUnit === 'milhas') {
         return (metersValue / 1609.34).toFixed(2);
     }
 }
@@ -99,19 +99,19 @@ function convertLength(value, inputUnit, outputUnit) {
 function convertWeight(value, inputUnit, outputUnit) {
     let kilogramsValue;
 
-    if (inputUnit === 'kilograms') {
+    if (inputUnit === 'quilogramas') {
         kilogramsValue = value;
-    } else if (inputUnit === 'grams') {
+    } else if (inputUnit === 'gramas') {
         kilogramsValue = value / 1000;
-    } else if (inputUnit === 'pounds') {
+    } else if (inputUnit === 'libras') {
         kilogramsValue = value / 2.20462;
     }
 
-    if (outputUnit === 'kilograms') {
+    if (outputUnit === 'quilogramas') {
         return kilogramsValue.toFixed(2);
-    } else if (outputUnit === 'grams') {
+    } else if (outputUnit === 'gramas') {
         return (kilogramsValue * 1000).toFixed(2);
-    } else if (outputUnit === 'pounds') {
+    } else if (outputUnit === 'libras') {
         return (kilogramsValue * 2.20462).toFixed(2);
     }
 }
