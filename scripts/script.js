@@ -1,7 +1,8 @@
 const units = {
     temperature: ['celsius', 'fahrenheit', 'kelvin'],
     length: ['quilômetro', 'metro', 'centímetro', 'milímetro'],
-    weight: ['tonelada', 'quilograma', 'grama', 'miligrama']
+    weight: ['tonelada', 'quilograma', 'grama', 'miligrama'],
+    speed: ['metros por segundo', 'quilômetros por hora']
 };
 
 function updateUnits() {
@@ -51,6 +52,8 @@ function convert() {
         result = convertLength(value, inputUnit, outputUnit);
     } else if (conversionType === 'weight') {
         result = convertWeight(value, inputUnit, outputUnit);
+    } else if (conversionType === 'speed') {
+        result = convertSpeed(value, inputUnit, outputUnit);
     }
 
     outputValueElement.innerText = `Resultado: ${result} ${outputUnit.charAt(0).toUpperCase() + outputUnit.slice(1)}`;
@@ -141,6 +144,22 @@ function convertWeight(value, inputUnit, outputUnit) {
             return (kilogramsValue * 1e6).toFixed(2);
         default:
             return kilogramsValue.toFixed(2);
+    }
+}
+
+function convertSpeed(value, inputUnit, outputUnit) {
+    let metersPerSecondValue;
+
+    if (inputUnit === 'metros por segundo') {
+        metersPerSecondValue = value;
+    } else if (inputUnit === 'quilômetros por hora') {
+        metersPerSecondValue = value / 3.6;
+    }
+
+    if (outputUnit === 'metros por segundo') {
+        return metersPerSecondValue.toFixed(2);
+    } else if (outputUnit === 'quilômetros por hora') {
+        return (metersPerSecondValue * 3.6).toFixed(2);
     }
 }
 
