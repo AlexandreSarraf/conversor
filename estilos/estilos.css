@@ -49,13 +49,13 @@ input, select, button {
 body.dark-mode input,
 body.dark-mode select,
 body.dark-mode button {
-    background-color: #444444f1;
+    background-color: #444444;
     color: #fff;
     border: 1px solid #555;
 }
 
 button {
-    background-color: #0a4debcf;
+    background-color: #235ee8cf;
     color: white;
     border: none;
     cursor: pointer;
